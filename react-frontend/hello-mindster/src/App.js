@@ -1,5 +1,8 @@
-import logo from './logo.svg';
+import logo from './kubernetes-icon.svg';
 import './App.css';
+
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 
 function App() {
   return (
@@ -7,7 +10,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Hello Mindster!
         </p>
         <a
           className="App-link"
@@ -15,11 +18,19 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
         </a>
+        <a> 
+          Your backend url is: 
+          {SERVER_URL || " undefined"}
+        </a>
+        <p>Data: {SERVER_URL ? getData(SERVER_URL) : "No data, url is not set. Please set the REACT_APP_SERVER_URL environment variable to point to your database"}</p>
       </header>
     </div>
   );
+}
+
+function getData(){
+
 }
 
 export default App;
