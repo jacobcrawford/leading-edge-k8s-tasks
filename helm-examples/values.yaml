@@ -1,0 +1,5 @@
+image:
+  tag: nginx:1.14.2
+service:
+  type: NodePort
+
