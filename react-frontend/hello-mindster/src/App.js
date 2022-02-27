@@ -24,13 +24,15 @@ function App() {
           {SERVER_URL || " undefined"}
         </a>
         <p>Data: {SERVER_URL ? getData(SERVER_URL) : "No data, url is not set. Please set the REACT_APP_SERVER_URL environment variable to point to your database"}</p>
+        <a href="https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/#define-an-environment-variable-for-a-container">See how here!</a>
       </header>
     </div>
   );
 }
 
-function getData(){
-
+async function getData(url){
+  await fetch("http://" + url + "/data")
+    .then(res => res.json())
 }
 
 export default App;
