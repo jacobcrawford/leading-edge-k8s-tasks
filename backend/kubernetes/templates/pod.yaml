@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node
+  labels: 
+    app: node
+spec:
+  containers:
+  - name: node
+    image: "jcrmindster/hello-mindster-backend-node:{{ .Values.image.tag }}"
+    ports:
+    - containerPort: 8000
