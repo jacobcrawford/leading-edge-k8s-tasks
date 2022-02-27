@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: {{ .Values.image.tag }}
+    image: nginx:{{ .Values.image.tag }}
     ports:
     - containerPort: 80
