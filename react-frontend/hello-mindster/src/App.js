@@ -31,8 +31,9 @@ function App() {
 }
 
 async function getData(url){
-  await fetch("http://" + url + "/data")
+  await fetch("http://" + url)
     .then(res => res.json())
+    .catch(console.error)
 }
 
 export default App;
