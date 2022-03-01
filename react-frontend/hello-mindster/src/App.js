@@ -34,7 +34,8 @@ function App() {
           {SERVER_URL || " undefined"}
         </a>
         <p>Data: {SERVER_URL ? mindsterData : "No data, url is not set. Please set the REACT_APP_SERVER_URL environment variable to point to your database"}</p>
-        <a href="https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/#define-an-environment-variable-for-a-container">See how here!</a>
+        {!SERVER_URL && <a href="https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/#define-an-environment-variable-for-a-container">See how here!</a>}
+        <p>If you dont have a backend then deploy this guy and expose it with an IP: ´jcrmindster/hello-mindster-backend-node´ </p>
       </header>
     </div>
   );
