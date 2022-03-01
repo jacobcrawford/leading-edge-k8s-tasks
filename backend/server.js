@@ -1,13 +1,15 @@
 
-const http = require("http");
+const express = require('express');
+const cors = require('cors');
 
-http.createServer(function (req, res) {
-  
-   res.writeHead(200, {'Content-Type': 'application/json'});
- 
-   data = [{datapoint: "You"},{datapoint: "rock"}, {datapoint: "Mindster!"}]
-   res.end(JSON.stringify(data));
-   
-}).listen(8000);
+const app = express();
 
-console.log('Server started at http://127.0.0.1:8000/');
+app.use(cors())
+
+app.get('/', (req, res) => {
+    res.json([{datapoint: "You"},{datapoint: "rock"}, {datapoint: "Mindster!"}]);
+});
+
+app.listen(8000, () => {
+   console.log('server is listening on port 8000');
+});
