@@ -1,10 +1,20 @@
 import logo from './kubernetes-icon.svg';
+import React, { useEffect,useState } from 'react'
 import './App.css';
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
-
 function App() {
+  const [mindsterData, setMindsterData] = useState(undefined)
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
+  useEffect(()=> {
+    async function fetchData() {
+      let mindsterData = await getMindsterData(SERVER_URL)
+      console.log(mindsterData)
+      setMindsterData(mindsterData)
+    }
+    fetchData();
+  })
+
   return (
     <div className="App">
       <header className="App-header">
@@ -23,17 +33,18 @@ function App() {
           Your backend url is: 
           {SERVER_URL || " undefined"}
         </a>
-        <p>Data: {SERVER_URL ? getData(SERVER_URL) : "No data, url is not set. Please set the REACT_APP_SERVER_URL environment variable to point to your database"}</p>
+        <p>Data: {SERVER_URL ? mindsterData : "No data, url is not set. Please set the REACT_APP_SERVER_URL environment variable to point to your database"}</p>
         <a href="https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/#define-an-environment-variable-for-a-container">See how here!</a>
       </header>
     </div>
   );
 }
 
-async function getData(url){
-  await fetch("http://" + url)
-    .then(res => res.json())
+async function getMindsterData(url) {
+  let res = await fetch("http://" + url + "/")
+    .then(res => res.text())
     .catch(console.error)
+  return res
 }
 
 export default App;
