@@ -10,3 +10,6 @@ spec:
     image: "jcrmindster/hello-mindster-react:{{ .Values.image.tag }}"
     ports:
     - containerPort: 3000
+    env:
+    - name: REACT_APP_SERVER_URL
+      value: {{ .Values.backend.endpoint }}
